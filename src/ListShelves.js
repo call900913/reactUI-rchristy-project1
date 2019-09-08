@@ -21,3 +21,5 @@ class ListShelves extends Component {
     )
   }
 }
+
+export default ListShelves;
