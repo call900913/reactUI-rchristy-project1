@@ -1,6 +1,6 @@
 # MyReads: A Book Tracking App
 
-This project creates a React web app where you can put books in three different shelves/categories: have read, currently reading, or want to read.
+This project creates a React web app where you can put books in three different shelves/categories: have read, currently reading, or want to read. The app has a search page with a feature that searches a list of books which comes from an API.
 
 The project initializes with Facebook's create-react-app scaffolding and some HTML+CSS code from @richardkalehoff of Udacity.
 
