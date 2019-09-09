@@ -32,4 +32,4 @@ npm install
 npm start
 ```
 
-The app and its files have been designed to highlight a structure of Components, a hallmark feature of React.
+Although the app's functionality is limited (with search terms listed in `SEARCH_TERMS.md` and a relatively small list of books), it does -- together with its files -- highlight a structure of Components, a hallmark feature of React.
