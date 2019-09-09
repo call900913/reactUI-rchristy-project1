@@ -1,27 +1,37 @@
 import React, { Component } from "react";
+import * as BooksAPI from './BooksAPI.js';
 
 class Book extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: '',
-      name: '',
+      author: [],
+      title: '',
       thumbnail: 'url("")',
-      shelf: ''
+      shelf: '',
+      id: ''
     }
   }
-
-  // some kind of setState with this.props.book
-  // or pass in a function to update this state
-
+  componentDidMount() {
+    BooksAPI.get(this.props.id).then((book) => {
+      this.setState((prevState) => ({
+        author: book.authors,
+        title: book.title,
+        thumbnail: 'url(' + book.imageLinks.thumbnail + ')',
+        shelf: book.shelf,
+        id: book.id
+      }))
+    })
+  }
   render() {
+    const { id, author, title, thumbnail } = this.state;
     return(
       <li>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: {this.state.thumbnail} }}></div>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: thumbnail }}></div>
             <div className="book-shelf-changer">
-              <select>
+              <select value="none" onChange={(event) => this.props.handleChange(id, event.target.value)}>
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -30,8 +40,8 @@ class Book extends Component {
               </select>
             </div>
           </div>
-          <div className="book-title">{this.state.name}</div>
-          <div className="book-authors">{this.state.author}</div>
+          <div className="book-title">{title}</div>
+          <div className="book-authors">{author}</div>
         </div>
       </li>
     )
