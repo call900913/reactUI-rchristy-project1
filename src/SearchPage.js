@@ -18,6 +18,13 @@ class SearchPage extends Component {
     }))
     BooksAPI.search(q).then((stuff) => {
       const addedbooks = []
+      console.log('stuff.error, ', stuff.error);
+      console.log('stuff.items', stuff.items)
+      if (stuff.error === "empty query") {
+        return this.setState((prevState) => ({
+          searchResults: []
+        }))
+      }
       stuff.forEach((item) => {
         addedbooks.push(item.id);
       })
@@ -26,7 +33,12 @@ class SearchPage extends Component {
       }))
       console.log('addedbooks: ' + addedbooks)
       console.log('search results: ', this.state.searchResults);
-    })
+    }).catch((er) => {
+      console.log('error is... ', er)
+      this.setState((prevState) => ({
+        searchResults: []
+      }))
+    });
   }
 
   render() {
