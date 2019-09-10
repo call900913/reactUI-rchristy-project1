@@ -23,8 +23,9 @@ class Book extends Component {
       }))
     })
   }
+
   render() {
-    const { id, author, title, thumbnail } = this.state;
+    const { id, author, title, thumbnail, shelf } = this.state;
     return(
       <li>
         <div className="book">
